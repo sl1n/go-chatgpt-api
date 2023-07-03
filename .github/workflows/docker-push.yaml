@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - 'main'
+  watch:
+    types: [started]
 
 env:
   PLATFORMS: ${{ vars.PLATFORMS || 'linux/amd64' }}
