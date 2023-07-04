@@ -41,7 +41,7 @@ jobs:
           context: .
           platforms: ${{ env.PLATFORMS }}
           push: true
-          tags: ${{ github.actor }}/go-chatgpt-api
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/go-chatgpt-api
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
 
@@ -50,7 +50,7 @@ jobs:
         if: ${{ vars.USE_GHCR == '1' }}
         with:
           registry: ghcr.io
-          username: ${{ github.actor }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push to ghcr
@@ -60,6 +60,6 @@ jobs:
           context: .
           platforms: ${{ env.PLATFORMS }}
           push: true
-          tags: ghcr.io/${{ github.actor }}/go-chatgpt-api
+          tags: ghcr.io/${{ secrets.DOCKERHUB_USERNAME }}/go-chatgpt-api
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
